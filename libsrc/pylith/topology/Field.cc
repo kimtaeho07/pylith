@@ -598,6 +598,7 @@ pylith::topology::Field::createOutputVector(void) {
 
     PetscDM dmOutput = NULL;
     err = DMGetOutputDM(_dm, &dmOutput);PYLITH_CHECK_ERROR(err);
+    err = DMCreateDS(dmOutput);PYLITH_CHECK_ERROR(err);
     err = DMCreateGlobalVector(dmOutput, &_outputVec);PYLITH_CHECK_ERROR(err);assert(_outputVec);
     err = PetscObjectSetName((PetscObject) _outputVec, getLabel());PYLITH_CHECK_ERROR(err);
 
